@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Data.Models;
 
@@ -6,7 +7,8 @@ namespace API.Data.Models;
 
 public class User
 {
-    public int UserId { get; set; }
+    [Key]
+    public Guid UserId { get; set; }
     public string username { get; set; }
     [NotMapped]
     public string? password { get; set; }

@@ -1,5 +1,4 @@
 ﻿using API.Data.Models;
-using DefaultNamespace;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;
@@ -13,20 +12,28 @@ public class DataContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<News>().HasData(
+            new News { NewsId = 1, title = "News 1", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
+            new News { NewsId = 2, title = "News 2", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
+            new News { NewsId = 3, title = "News 3", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) }
+        );
+        
+        
         modelBuilder.Entity<Product>().HasData(
-            new Product { ProductId = 1, name = "Product 1", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 2, name = "Product 2", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 3, name = "Product 3", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 4, name = "Product 4", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 5, name = "Product 5", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 6, name = "Product 6", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 7, name = "Product 7", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = 8, name = "Product 8", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null }
+            new Product { ProductId = Guid.NewGuid(), name = "Product 1", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 2", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 3", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 4", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 5", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 6", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 7", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 8", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null }
             );
         
         modelBuilder.Entity<User>().HasData(
-            new User { UserId = 1, username = "admintest", password = "123456", usertype = "admin" },
-            new User { UserId = 2, username = "usertest", password = "123456", usertype = "user" }
+            new User { UserId = Guid.NewGuid(), username = "admintest", password = "123456", usertype = "admin" },
+            new User { UserId = Guid.NewGuid(), username = "usertest", password = "123456", usertype = "user" }
         );
         
     }

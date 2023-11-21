@@ -12,4 +12,5 @@ public interface ProductDTO
     public string? category { get; set; }
     public int? price { get; set; }
     public int? discount { get; set; }
+    public string[] images { get; set; }
 }

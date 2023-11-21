@@ -7,4 +7,5 @@ public class News
     public string? subtitle { get; set; }
     public string? description { get; set; }
     public DateOnly? published { get; set; }
+    public string? image { get; set; }
 }

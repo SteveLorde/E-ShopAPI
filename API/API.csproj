@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <Folder Include="Data\DTOs\" />
+      <Folder Include="Data\Migrations\" />
       <Folder Include="obj\Debug\net7.0\refint\" />
       <Folder Include="obj\Debug\net7.0\ref\" />
       <Folder Include="obj\Debug\net7.0\staticwebassets\" />

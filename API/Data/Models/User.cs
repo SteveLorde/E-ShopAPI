@@ -15,11 +15,5 @@ public class User
     public string? pass_salt { get; set; }
     public string? hashedpassword { get; set; }
     public string usertype { get; set; }
-    
-    public enum usertypes {
-        User,
-        Admin
-    }
-
 
 }

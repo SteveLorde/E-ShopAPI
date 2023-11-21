@@ -9,7 +9,7 @@ public class WarehouseController : Controller
     [HttpGet("GetWeatherForecast")]
     public IActionResult Index()
     {
-        return View();
+        return Ok();
     }
     
 }

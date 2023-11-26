@@ -12,6 +12,7 @@ public class Product
     public string? category { get; set; }
     public int? price { get; set; }
     public int? barcode { get; set; }
+    public int quantity { get; set; }
     public DateOnly? addedon { get; set; }
     public int? discount { get; set; }
     public string[]? images { get; set; }

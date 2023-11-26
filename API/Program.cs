@@ -18,6 +18,7 @@ builder.Services.AddScoped<IProductsRepository,ProductsRepository>();
 builder.Services.AddScoped<I_ImageService,ImageService>();
 builder.Services.AddScoped<INewsRepository,NewsRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
+    /*
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -34,6 +35,7 @@ builder.Services.AddAuthentication(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("V4XnjsgnRQuUecN27lwoCB82i4AbDMoX1GIFLbtolN4P8P18IRXFVLojx4vwLi7"))
         };
     });
+    */
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

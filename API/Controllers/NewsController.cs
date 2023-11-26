@@ -23,4 +23,7 @@ public class NewsController : Controller
     {
         return await _newsrepo.GetNews();
     }
+    
+    
+    
 }

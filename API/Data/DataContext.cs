@@ -21,14 +21,14 @@ public class DataContext : DbContext
         
         
         modelBuilder.Entity<Product>().HasData(
-            new Product { ProductId = Guid.NewGuid(), name = "Product 1", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 2", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 3", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 4", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 5", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 6", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 7", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null },
-            new Product { ProductId = Guid.NewGuid(), name = "Product 8", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null }
+            new Product { ProductId = Guid.NewGuid(), name = "Product 1", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 500},
+            new Product { ProductId = Guid.NewGuid(), name = "Product 2", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 50 },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 3", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 15 },
+            new Product { ProductId = Guid.NewGuid(), name = "Product 4", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 40},
+            new Product { ProductId = Guid.NewGuid(), name = "Product 5", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 1},
+            new Product { ProductId = Guid.NewGuid(), name = "Product 6", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 25},
+            new Product { ProductId = Guid.NewGuid(), name = "Product 7", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 0},
+            new Product { ProductId = Guid.NewGuid(), name = "Product 8", description = "Desc Test", descriptionbullets = null, price = 500, addedon = null, discount = null, sells = 0}
             );
         
         modelBuilder.Entity<User>().HasData(

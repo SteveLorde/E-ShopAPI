@@ -30,7 +30,7 @@ class NewsRepository : INewsRepository
     public async Task UpdateNews(News newstoupdate)
     {
         News selectednews = await _db.News.FirstAsync(x => x.NewsId == newstoupdate.NewsId);
-        _mapper.Map(newstoupdate, selectednews);
+        selectednews = newstoupdate;
         await _db.SaveChangesAsync();
     }
 

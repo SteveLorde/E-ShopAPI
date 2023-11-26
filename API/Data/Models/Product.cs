@@ -15,5 +15,6 @@ public class Product
     public DateOnly? addedon { get; set; }
     public int? discount { get; set; }
     public string[]? images { get; set; }
+    public int? sells { get; set; }
     
 }

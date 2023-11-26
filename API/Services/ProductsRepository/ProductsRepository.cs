@@ -10,11 +10,14 @@ class ProductsRepository : IProductsRepository
 {
     private readonly DataContext _db;
     private readonly IMapper _mapper;
+    public List<Product> primarymostselling = new List<Product>();
+    private readonly IWebHostEnvironment _hostingenv;
 
-    public ProductsRepository(DataContext db, IMapper mapper)
+    public ProductsRepository(DataContext db, IMapper mapper, IWebHostEnvironment hostingEnvironment)
     {
         _db = db;
         _mapper = mapper;
+        _hostingenv = hostingEnvironment;
     }
     
     public async Task<List<Product>> GetProducts()
@@ -26,6 +29,37 @@ class ProductsRepository : IProductsRepository
     {
         return await _db.Products.Where(x => x.category == category).ToListAsync();
     }
+    
+    public List<Product> GetMostSelling()
+    {
+        return primarymostselling;
+    }
+
+    private async Task MostSelling()
+    {
+        primarymostselling.Clear();
+        primarymostselling = await _db.Products.OrderByDescending(x => x.sells).Take(15).ToListAsync();
+    }
+
+    public async Task CreateAssetsFolders()
+    {
+        try
+        {
+            List<Product> allproducts = await _db.Products.ToListAsync();
+            foreach (Product product in allproducts)
+            {
+                var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "Products",
+                    $"{product.ProductId}", "Images");
+                Directory.CreateDirectory(productfoldertocreate); 
+            }
+            Console.WriteLine("Created Products assets folders successfully");
+        }
+        catch (Exception err)
+        {
+            throw err;
+        }
+    }
+
 
     public async Task AddProduct(ProductDTO producttoadd)
     {

@@ -6,7 +6,7 @@ namespace API.Services.ProductsRepository;
 public interface IProductsRepository
 {
     public Task<List<Product>> GetProducts();
-    public List<Product> GetMostSelling();
+    public Task<List<Product>> GetMostSelling();
     public Task CreateAssetsFolders();
     public Task<List<Product>> GetProductsByCategory(string category);
     public Task AddProduct(ProductDTO producttoadd);

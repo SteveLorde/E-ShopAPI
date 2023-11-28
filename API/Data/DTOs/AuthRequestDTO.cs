@@ -1,7 +1,9 @@
-﻿namespace API.Data.DTOs;
+﻿using API.Data.Models;
+
+namespace API.Data.DTOs;
 
 public interface AuthRequestDTO
 {
-    public string username { get; set; }
-    public string password { get; set; }
+    public User user { get; set; }
+    public string token { get; set; }
 }

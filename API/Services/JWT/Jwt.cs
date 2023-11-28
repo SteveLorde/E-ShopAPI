@@ -37,5 +37,35 @@ class Jwt : IJWT
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);
         return jwt;
     }
+
+    public bool VerifyToken(string token)
+    {
+        try
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var secretkey = Encoding.UTF8.GetBytes(jwtseckey);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(secretkey),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero // You may adjust the clock skew as needed
+            };
+
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
+
+            return true;
+
+        }
+        catch (Exception err)
+        {
+            throw err;
+        }
+
+
+
+    }
     
 }

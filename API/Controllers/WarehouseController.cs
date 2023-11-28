@@ -35,9 +35,9 @@ public class WarehouseController : Controller
     }
 
     [HttpGet("MostSelling")]
-    public List<Product> ReturnMostSelling()
+    public async Task<List<Product>> ReturnMostSelling()
     {
-        return _warehouse.GetMostSelling();
+        return await _warehouse.GetMostSelling();
     }
 
     [HttpGet("GetImage/${productid}/${imagename}")]

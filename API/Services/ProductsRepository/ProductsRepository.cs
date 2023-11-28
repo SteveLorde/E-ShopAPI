@@ -30,8 +30,9 @@ class ProductsRepository : IProductsRepository
         return await _db.Products.Where(x => x.category == category).ToListAsync();
     }
     
-    public List<Product> GetMostSelling()
+    public async Task<List<Product>> GetMostSelling()
     {
+        await MostSelling();
         return primarymostselling;
     }
 

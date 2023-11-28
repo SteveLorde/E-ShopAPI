@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+/*
 [Authorize]
+*/
 [ApiController]
 [Route("News")]
 public class NewsController : Controller

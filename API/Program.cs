@@ -3,6 +3,7 @@ using API.Data;
 using API.Services.Images;
 using API.Services.NewsRepository;
 using API.Services.ProductsRepository;
+using API.Services.StartupService;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IProductsRepository,ProductsRepository>();
 builder.Services.AddScoped<I_ImageService,ImageService>();
 builder.Services.AddScoped<INewsRepository,NewsRepository>();
+builder.Services.AddScoped<Startup>();
 builder.Services.AddAutoMapper(typeof(Program));
     /*
 builder.Services.AddAuthentication(options =>
@@ -43,8 +45,8 @@ var app = builder.Build();
 
 var servicescope = app.Services.CreateScope();
 var services = servicescope.ServiceProvider;
-var productreposervice = services.GetRequiredService<IProductsRepository>();
-productreposervice.CreateAssetsFolders();
+var startupservice = services.GetRequiredService<Startup>();
+startupservice.ExecuteServices();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -62,8 +64,9 @@ app.UseStaticFiles(new StaticFileOptions
         Path.Combine(builder.Environment.ContentRootPath, "Storage")),
     RequestPath = "/storage"
 });
-
+/*
 app.UseAuthentication();
 app.UseAuthorization();
+*/
 app.MapControllers();
 app.Run();

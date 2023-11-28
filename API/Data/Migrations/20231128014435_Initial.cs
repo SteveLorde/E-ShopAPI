@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,8 +17,7 @@ namespace API.Data.Migrations
                 name: "News",
                 columns: table => new
                 {
-                    NewsId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NewsId = table.Column<Guid>(type: "uuid", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
                     subtitle = table.Column<string>(type: "text", nullable: true),
                     description = table.Column<string>(type: "text", nullable: true),
@@ -42,9 +40,11 @@ namespace API.Data.Migrations
                     category = table.Column<string>(type: "text", nullable: true),
                     price = table.Column<int>(type: "integer", nullable: true),
                     barcode = table.Column<int>(type: "integer", nullable: true),
+                    quantity = table.Column<int>(type: "integer", nullable: false),
                     addedon = table.Column<DateOnly>(type: "date", nullable: true),
                     discount = table.Column<int>(type: "integer", nullable: true),
-                    images = table.Column<string[]>(type: "text[]", nullable: true)
+                    images = table.Column<string[]>(type: "text[]", nullable: true),
+                    sells = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,24 +71,24 @@ namespace API.Data.Migrations
                 columns: new[] { "NewsId", "description", "image", "published", "subtitle", "title" },
                 values: new object[,]
                 {
-                    { 1, "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 1" },
-                    { 2, "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 2" },
-                    { 3, "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 3" }
+                    { new Guid("207fac73-e220-45e3-bb0c-deef5a3f50de"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 3" },
+                    { new Guid("2807756c-dfc8-4d5d-8964-db8f7a218aba"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 1" },
+                    { new Guid("5ff78de2-32c8-4d10-b9e6-61d3965d78de"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "addedon", "barcode", "category", "description", "descriptionbullets", "discount", "images", "name", "price" },
+                columns: new[] { "ProductId", "addedon", "barcode", "category", "description", "descriptionbullets", "discount", "images", "name", "price", "quantity", "sells" },
                 values: new object[,]
                 {
-                    { new Guid("2d8cbb3b-03d2-4b95-996e-995675c1d7a8"), null, null, null, "Desc Test", null, null, null, "Product 1", 500 },
-                    { new Guid("2fd68b95-3b2d-4fad-9e74-ac1c3764232c"), null, null, null, "Desc Test", null, null, null, "Product 4", 500 },
-                    { new Guid("624c0805-fff1-484c-977c-2adb16d8da02"), null, null, null, "Desc Test", null, null, null, "Product 8", 500 },
-                    { new Guid("77cbdad5-1012-4be6-85d8-2a3eec72372a"), null, null, null, "Desc Test", null, null, null, "Product 7", 500 },
-                    { new Guid("901f4c46-46b8-486c-a918-b26859e95563"), null, null, null, "Desc Test", null, null, null, "Product 5", 500 },
-                    { new Guid("b5360f9d-9ae6-456e-9daf-0f89f6c15431"), null, null, null, "Desc Test", null, null, null, "Product 2", 500 },
-                    { new Guid("d69a5d7d-912d-44d7-8db8-1894b5f9e538"), null, null, null, "Desc Test", null, null, null, "Product 3", 500 },
-                    { new Guid("f475dfcd-37b9-4065-a6ab-b86754e05b3f"), null, null, null, "Desc Test", null, null, null, "Product 6", 500 }
+                    { new Guid("18a15403-e61f-4622-843b-3c754a1116cd"), null, null, null, "Desc Test", null, null, null, "Product 7", 500, 7, 0 },
+                    { new Guid("20d29cd7-a918-4141-8fc1-c18e6436d2a8"), null, null, null, "Desc Test", null, null, null, "Product 2", 500, 10, 50 },
+                    { new Guid("4f4776bf-5329-461e-8651-fc0da49b915e"), null, null, null, "Desc Test", null, null, null, "Product 6", 500, 6, 25 },
+                    { new Guid("5bef0c5c-207b-4b6d-8e57-9de6483172c5"), null, null, null, "Desc Test", null, null, null, "Product 5", 500, 4, 1 },
+                    { new Guid("66cd93d1-1cf2-4c1a-b4fb-a2f9d94e3d70"), null, null, null, "Desc Test", null, null, null, "Product 1", 500, 50, 500 },
+                    { new Guid("6a0d1268-e719-40c2-a2ee-bd3227ac2777"), null, null, null, "Desc Test", null, null, null, "Product 8", 500, 0, 0 },
+                    { new Guid("848fb490-1617-4fb0-b243-07d8da2812b1"), null, null, null, "Desc Test", null, null, null, "Product 3", 500, 1, 15 },
+                    { new Guid("e738d355-26b7-434d-948a-17827808fc11"), null, null, null, "Desc Test", null, null, null, "Product 4", 500, 5, 40 }
                 });
 
             migrationBuilder.InsertData(
@@ -96,8 +96,8 @@ namespace API.Data.Migrations
                 columns: new[] { "UserId", "hashedpassword", "pass_salt", "username", "usertype" },
                 values: new object[,]
                 {
-                    { new Guid("3907e15e-0a1d-4cae-9dbc-8107cc0f179d"), null, null, "admintest", "admin" },
-                    { new Guid("6a400439-2c80-42bc-adc7-2f0e491f34a1"), null, null, "usertest", "user" }
+                    { new Guid("a45910a9-c485-4288-81c7-ecbdbf898657"), null, null, "usertest", "user" },
+                    { new Guid("a8e1bf9a-277c-47f8-add4-66849519c8f1"), null, null, "admintest", "admin" }
                 });
         }
 

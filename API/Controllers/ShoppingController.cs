@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+/*
 [Authorize]
+*/
 [ApiController]
 [Route("Shopping")]
 public class ShoppingController : Controller

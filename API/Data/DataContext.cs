@@ -14,9 +14,9 @@ public class DataContext : DbContext
     {
 
         modelBuilder.Entity<News>().HasData(
-            new News { NewsId = 1, title = "News 1", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
-            new News { NewsId = 2, title = "News 2", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
-            new News { NewsId = 3, title = "News 3", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) }
+            new News { NewsId = Guid.NewGuid(), title = "News 1", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
+            new News { NewsId = Guid.NewGuid(), title = "News 2", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) },
+            new News { NewsId = Guid.NewGuid(), title = "News 3", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1) }
         );
         
         

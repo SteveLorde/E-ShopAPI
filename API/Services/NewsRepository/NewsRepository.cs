@@ -10,11 +10,32 @@ class NewsRepository : INewsRepository
     
     private readonly DataContext _db;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _hostenv;
 
-    public NewsRepository(DataContext db, IMapper mapper)
+    public NewsRepository(DataContext db, IMapper mapper, IWebHostEnvironment hostingEnvironment)
     {
         _db = db;
         _mapper = mapper;
+        _hostenv = hostingEnvironment;
+    }
+    
+    public async Task CreateNewsFolders()
+    {
+        try
+        {
+            List<News> allnews = await _db.News.ToListAsync();
+            foreach (News news in allnews)
+            {
+                var newsfoldertocreate = Path.Combine(_hostenv.ContentRootPath, "Storage", "News",
+                    $"{news.NewsId}", "Images");
+                Directory.CreateDirectory(newsfoldertocreate); 
+            }
+            Console.WriteLine("Created News folders successfully");
+        }
+        catch (Exception err)
+        {
+            throw err;
+        }
     }
     
     public async Task<List<News>> GetNews()

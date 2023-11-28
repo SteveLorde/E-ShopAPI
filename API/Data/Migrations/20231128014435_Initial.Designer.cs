@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231121141223_Initial")]
+    [Migration("20231128014435_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,11 +27,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Data.Models.News", b =>
                 {
-                    b.Property<int>("NewsId")
+                    b.Property<Guid>("NewsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("NewsId"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("description")
                         .HasColumnType("text");
@@ -56,21 +54,21 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            NewsId = 1,
+                            NewsId = new Guid("2807756c-dfc8-4d5d-8964-db8f7a218aba"),
                             description = "Desc Test",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 1"
                         },
                         new
                         {
-                            NewsId = 2,
+                            NewsId = new Guid("5ff78de2-32c8-4d10-b9e6-61d3965d78de"),
                             description = "Desc Test",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 2"
                         },
                         new
                         {
-                            NewsId = 3,
+                            NewsId = new Guid("207fac73-e220-45e3-bb0c-deef5a3f50de"),
                             description = "Desc Test",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 3"
@@ -111,6 +109,12 @@ namespace API.Data.Migrations
                     b.Property<int?>("price")
                         .HasColumnType("integer");
 
+                    b.Property<int>("quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("sells")
+                        .HasColumnType("integer");
+
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
@@ -118,59 +122,75 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("2d8cbb3b-03d2-4b95-996e-995675c1d7a8"),
+                            ProductId = new Guid("66cd93d1-1cf2-4c1a-b4fb-a2f9d94e3d70"),
                             description = "Desc Test",
                             name = "Product 1",
-                            price = 500
+                            price = 500,
+                            quantity = 50,
+                            sells = 500
                         },
                         new
                         {
-                            ProductId = new Guid("b5360f9d-9ae6-456e-9daf-0f89f6c15431"),
+                            ProductId = new Guid("20d29cd7-a918-4141-8fc1-c18e6436d2a8"),
                             description = "Desc Test",
                             name = "Product 2",
-                            price = 500
+                            price = 500,
+                            quantity = 10,
+                            sells = 50
                         },
                         new
                         {
-                            ProductId = new Guid("d69a5d7d-912d-44d7-8db8-1894b5f9e538"),
+                            ProductId = new Guid("848fb490-1617-4fb0-b243-07d8da2812b1"),
                             description = "Desc Test",
                             name = "Product 3",
-                            price = 500
+                            price = 500,
+                            quantity = 1,
+                            sells = 15
                         },
                         new
                         {
-                            ProductId = new Guid("2fd68b95-3b2d-4fad-9e74-ac1c3764232c"),
+                            ProductId = new Guid("e738d355-26b7-434d-948a-17827808fc11"),
                             description = "Desc Test",
                             name = "Product 4",
-                            price = 500
+                            price = 500,
+                            quantity = 5,
+                            sells = 40
                         },
                         new
                         {
-                            ProductId = new Guid("901f4c46-46b8-486c-a918-b26859e95563"),
+                            ProductId = new Guid("5bef0c5c-207b-4b6d-8e57-9de6483172c5"),
                             description = "Desc Test",
                             name = "Product 5",
-                            price = 500
+                            price = 500,
+                            quantity = 4,
+                            sells = 1
                         },
                         new
                         {
-                            ProductId = new Guid("f475dfcd-37b9-4065-a6ab-b86754e05b3f"),
+                            ProductId = new Guid("4f4776bf-5329-461e-8651-fc0da49b915e"),
                             description = "Desc Test",
                             name = "Product 6",
-                            price = 500
+                            price = 500,
+                            quantity = 6,
+                            sells = 25
                         },
                         new
                         {
-                            ProductId = new Guid("77cbdad5-1012-4be6-85d8-2a3eec72372a"),
+                            ProductId = new Guid("18a15403-e61f-4622-843b-3c754a1116cd"),
                             description = "Desc Test",
                             name = "Product 7",
-                            price = 500
+                            price = 500,
+                            quantity = 7,
+                            sells = 0
                         },
                         new
                         {
-                            ProductId = new Guid("624c0805-fff1-484c-977c-2adb16d8da02"),
+                            ProductId = new Guid("6a0d1268-e719-40c2-a2ee-bd3227ac2777"),
                             description = "Desc Test",
                             name = "Product 8",
-                            price = 500
+                            price = 500,
+                            quantity = 0,
+                            sells = 0
                         });
                 });
 
@@ -201,13 +221,13 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("3907e15e-0a1d-4cae-9dbc-8107cc0f179d"),
+                            UserId = new Guid("a8e1bf9a-277c-47f8-add4-66849519c8f1"),
                             username = "admintest",
                             usertype = "admin"
                         },
                         new
                         {
-                            UserId = new Guid("6a400439-2c80-42bc-adc7-2f0e491f34a1"),
+                            UserId = new Guid("a45910a9-c485-4288-81c7-ecbdbf898657"),
                             username = "usertest",
                             usertype = "user"
                         });

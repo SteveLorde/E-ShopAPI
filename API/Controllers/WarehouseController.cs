@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+/*
 [Authorize]
+*/
 [ApiController]
 [Route("Warehouse")]
 public class WarehouseController : Controller

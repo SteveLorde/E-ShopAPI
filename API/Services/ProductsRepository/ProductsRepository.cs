@@ -75,7 +75,7 @@ class ProductsRepository : IProductsRepository
 
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, SubCategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), discount = null };
+        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, SubCategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
         await _db.Products.AddAsync(newproduct);
         await _db.SaveChangesAsync();
     }

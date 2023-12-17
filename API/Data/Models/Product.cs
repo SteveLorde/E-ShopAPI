@@ -16,7 +16,8 @@ public class Product
     public int? barcode { get; set; }
     public int storequantity { get; set; }
     public DateOnly? addedon { get; set; }
-    public int? discount { get; set; }
+    public Guid DiscountEventId { get; set; }
+    public DiscountEvent DiscountEvent { get; set; }
     public string[]? images { get; set; }
     public int? sells { get; set; }
     

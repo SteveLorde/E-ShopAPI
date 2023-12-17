@@ -27,7 +27,7 @@ class NewsRepository : INewsRepository
             foreach (News news in allnews)
             {
                 var newsfoldertocreate = Path.Combine(_hostenv.ContentRootPath, "Storage", "News",
-                    $"{news.NewsId}", "Images");
+                    $"{news.Id}", "Images");
                 Directory.CreateDirectory(newsfoldertocreate); 
             }
             Console.WriteLine("Created News folders successfully");
@@ -46,18 +46,19 @@ class NewsRepository : INewsRepository
     public async Task AddNews(News newstoadd)
     {
         await _db.News.AddAsync(newstoadd);
+        await _db.SaveChangesAsync();
     }
 
     public async Task UpdateNews(News newstoupdate)
     {
-        News selectednews = await _db.News.FirstAsync(x => x.NewsId == newstoupdate.NewsId);
+        News selectednews = await _db.News.FirstAsync(x => x.Id == newstoupdate.Id);
         selectednews = newstoupdate;
         await _db.SaveChangesAsync();
     }
 
     public async Task RemoveNews(News newstoremove)
     {
-        News selectednews = await _db.News.FirstAsync(x => x.NewsId == newstoremove.NewsId);
+        News selectednews = await _db.News.FirstAsync(x => x.Id == newstoremove.Id);
         _db.News.Remove(selectednews);
         await _db.SaveChangesAsync();
     }

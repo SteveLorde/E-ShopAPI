@@ -21,7 +21,7 @@ class Jwt : IJWT
     {
         List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.username)
+            new Claim(ClaimTypes.Name, user.username),
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtseckey));
@@ -54,7 +54,8 @@ class Jwt : IJWT
                 ClockSkew = TimeSpan.Zero // You may adjust the clock skew as needed
             };
 
-            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
+            ClaimsPrincipal principal =
+                tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
 
             return true;
 
@@ -63,9 +64,5 @@ class Jwt : IJWT
         {
             throw err;
         }
-
-
-
     }
-    
 }

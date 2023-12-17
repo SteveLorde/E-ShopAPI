@@ -25,9 +25,20 @@ class ProductsRepository : IProductsRepository
         return await _db.Products.ToListAsync();
     }
 
-    public async Task<List<Product>> GetProductsByCategory(string category)
+    public async Task<List<ParentCategory>> GetParentCategories()
     {
-        return await _db.Products.Where(x => x.category == category).ToListAsync();
+        return await _db.ParentCategories.ToListAsync();
+    }
+
+    public async Task<List<Category>> GetCategories()
+    {
+        return await _db.Categories.ToListAsync();
+    }
+
+    public async Task<List<Product>> GetProductsByCategory(string categoryid)
+    {
+        Guid categoryguid = Guid.Parse(categoryid);
+        return await _db.Products.Where(products => products.SubCategoryId == categoryguid).ToListAsync();
     }
     
     public async Task<List<Product>> GetMostSelling()
@@ -50,7 +61,7 @@ class ProductsRepository : IProductsRepository
             foreach (Product product in allproducts)
             {
                 var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "Products",
-                    $"{product.ProductId}", "Images");
+                    $"{product.Id}", "Images");
                 Directory.CreateDirectory(productfoldertocreate); 
             }
             Console.WriteLine("Created Products assets folders successfully");
@@ -64,14 +75,24 @@ class ProductsRepository : IProductsRepository
 
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, category = producttoadd.category, price = producttoadd.price, addedon = new DateOnly(2024,1,1), discount = null };
+        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, SubCategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), discount = null };
         await _db.Products.AddAsync(newproduct);
         await _db.SaveChangesAsync();
     }
 
+    public async Task AddQuantity(string productid)
+    {
+        
+    }
+
+    public async Task RemoveQuantity(string productid)
+    {
+        
+    }
+
     public async Task UpdateProduct(ProductDTO producttoupdate)
     {
-        Product selectedproduct = await _db.Products.FirstAsync(x => x.ProductId == producttoupdate.id);
+        Product selectedproduct = await _db.Products.FirstAsync(x => x.Id == producttoupdate.id);
         _mapper.Map(producttoupdate, selectedproduct);
         
         /*
@@ -92,7 +113,7 @@ class ProductsRepository : IProductsRepository
 
     public async Task RemoveProduct(ProductDTO producttoremove)
     {
-        Product removeproduct = await _db.Products.FirstAsync(x => x.ProductId == producttoremove.id);
+        Product removeproduct = await _db.Products.FirstAsync(x => x.Id == producttoremove.id);
         _db.Products.Remove(removeproduct);
         await _db.SaveChangesAsync();
     }

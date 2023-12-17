@@ -8,8 +8,9 @@ public class AutoMapping : Profile
 {
     public AutoMapping()
     {
-        CreateMap<User, UserDTO>();
-        CreateMap<Product, ProductDTO>();
+        CreateMap<UserDTO, User>();
+        CreateMap<ProductDTO, Product>();
+        CreateMap<PurchaseLogDTO, PurchaseLog>();
         CreateMap<AuthRequestDTO, UserDTO>();
     }
 }

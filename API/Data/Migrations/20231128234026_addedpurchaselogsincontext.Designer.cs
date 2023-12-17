@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231128014435_Initial")]
-    partial class Initial
+    [Migration("20231128234026_addedpurchaselogsincontext")]
+    partial class addedpurchaselogsincontext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,22 +54,25 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            NewsId = new Guid("2807756c-dfc8-4d5d-8964-db8f7a218aba"),
+                            NewsId = new Guid("77bdbdec-39fd-4d9b-9394-35089935216c"),
                             description = "Desc Test",
+                            image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 1"
                         },
                         new
                         {
-                            NewsId = new Guid("5ff78de2-32c8-4d10-b9e6-61d3965d78de"),
+                            NewsId = new Guid("6f3a894f-971e-4263-9b21-fb365aece3cb"),
                             description = "Desc Test",
+                            image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 2"
                         },
                         new
                         {
-                            NewsId = new Guid("207fac73-e220-45e3-bb0c-deef5a3f50de"),
+                            NewsId = new Guid("aaff248d-7772-4afb-acde-e868266d87af"),
                             description = "Desc Test",
+                            image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
                             title = "News 3"
                         });
@@ -122,8 +125,9 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("66cd93d1-1cf2-4c1a-b4fb-a2f9d94e3d70"),
+                            ProductId = new Guid("bffcdd60-9026-44a9-a328-5ee73bfb47e8"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 1",
                             price = 500,
                             quantity = 50,
@@ -131,8 +135,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("20d29cd7-a918-4141-8fc1-c18e6436d2a8"),
+                            ProductId = new Guid("7e345721-a6db-4a0f-902f-1f030e44838b"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 2",
                             price = 500,
                             quantity = 10,
@@ -140,8 +145,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("848fb490-1617-4fb0-b243-07d8da2812b1"),
+                            ProductId = new Guid("b1f12960-4467-49fe-9022-1e03722467e7"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 3",
                             price = 500,
                             quantity = 1,
@@ -149,8 +155,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("e738d355-26b7-434d-948a-17827808fc11"),
+                            ProductId = new Guid("63be51b6-cc02-4222-98cf-2ea124afe339"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 4",
                             price = 500,
                             quantity = 5,
@@ -158,8 +165,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("5bef0c5c-207b-4b6d-8e57-9de6483172c5"),
+                            ProductId = new Guid("4a2be4d1-3005-43ba-b6f2-aec5a303e47e"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 5",
                             price = 500,
                             quantity = 4,
@@ -167,8 +175,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("4f4776bf-5329-461e-8651-fc0da49b915e"),
+                            ProductId = new Guid("b73f5721-f458-4d01-bbe1-05916ba24d90"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 6",
                             price = 500,
                             quantity = 6,
@@ -176,8 +185,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("18a15403-e61f-4622-843b-3c754a1116cd"),
+                            ProductId = new Guid("e23ebf47-8fcc-48ca-970c-a34e2520e0ae"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 7",
                             price = 500,
                             quantity = 7,
@@ -185,8 +195,9 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("6a0d1268-e719-40c2-a2ee-bd3227ac2777"),
+                            ProductId = new Guid("bab17840-df31-4be6-8812-b18ef17a217d"),
                             description = "Desc Test",
+                            images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 8",
                             price = 500,
                             quantity = 0,
@@ -221,13 +232,13 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("a8e1bf9a-277c-47f8-add4-66849519c8f1"),
+                            UserId = new Guid("2f910c5d-c9d5-4391-a315-e6df614eb2a6"),
                             username = "admintest",
                             usertype = "admin"
                         },
                         new
                         {
-                            UserId = new Guid("a45910a9-c485-4288-81c7-ecbdbf898657"),
+                            UserId = new Guid("a651951d-2ecf-4f00-a832-dcef9b859fc5"),
                             username = "usertest",
                             usertype = "user"
                         });

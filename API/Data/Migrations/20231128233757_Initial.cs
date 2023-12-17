@@ -71,9 +71,9 @@ namespace API.Data.Migrations
                 columns: new[] { "NewsId", "description", "image", "published", "subtitle", "title" },
                 values: new object[,]
                 {
-                    { new Guid("207fac73-e220-45e3-bb0c-deef5a3f50de"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 3" },
-                    { new Guid("2807756c-dfc8-4d5d-8964-db8f7a218aba"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 1" },
-                    { new Guid("5ff78de2-32c8-4d10-b9e6-61d3965d78de"), "Desc Test", null, new DateOnly(2024, 1, 1), null, "News 2" }
+                    { new Guid("1668183c-29a9-4168-b6b5-06556cc8258c"), "Desc Test", "newscover.jpg", new DateOnly(2024, 1, 1), null, "News 3" },
+                    { new Guid("97921fe9-4fea-4756-880d-d4df10d514ec"), "Desc Test", "newscover.jpg", new DateOnly(2024, 1, 1), null, "News 1" },
+                    { new Guid("da015ff8-b47b-48c0-8353-fd3012c9a1b7"), "Desc Test", "newscover.jpg", new DateOnly(2024, 1, 1), null, "News 2" }
                 });
 
             migrationBuilder.InsertData(
@@ -81,14 +81,14 @@ namespace API.Data.Migrations
                 columns: new[] { "ProductId", "addedon", "barcode", "category", "description", "descriptionbullets", "discount", "images", "name", "price", "quantity", "sells" },
                 values: new object[,]
                 {
-                    { new Guid("18a15403-e61f-4622-843b-3c754a1116cd"), null, null, null, "Desc Test", null, null, null, "Product 7", 500, 7, 0 },
-                    { new Guid("20d29cd7-a918-4141-8fc1-c18e6436d2a8"), null, null, null, "Desc Test", null, null, null, "Product 2", 500, 10, 50 },
-                    { new Guid("4f4776bf-5329-461e-8651-fc0da49b915e"), null, null, null, "Desc Test", null, null, null, "Product 6", 500, 6, 25 },
-                    { new Guid("5bef0c5c-207b-4b6d-8e57-9de6483172c5"), null, null, null, "Desc Test", null, null, null, "Product 5", 500, 4, 1 },
-                    { new Guid("66cd93d1-1cf2-4c1a-b4fb-a2f9d94e3d70"), null, null, null, "Desc Test", null, null, null, "Product 1", 500, 50, 500 },
-                    { new Guid("6a0d1268-e719-40c2-a2ee-bd3227ac2777"), null, null, null, "Desc Test", null, null, null, "Product 8", 500, 0, 0 },
-                    { new Guid("848fb490-1617-4fb0-b243-07d8da2812b1"), null, null, null, "Desc Test", null, null, null, "Product 3", 500, 1, 15 },
-                    { new Guid("e738d355-26b7-434d-948a-17827808fc11"), null, null, null, "Desc Test", null, null, null, "Product 4", 500, 5, 40 }
+                    { new Guid("0a264458-6c83-4012-9be7-8e7c7eda0ab8"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 8", 500, 0, 0 },
+                    { new Guid("0fe9cb6f-f2f5-4843-ae9a-e54d6b8ebdaa"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 4", 500, 5, 40 },
+                    { new Guid("6f80aeee-13db-4074-aada-d6ba2852b6f8"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 6", 500, 6, 25 },
+                    { new Guid("9bd81fdd-7322-4312-a208-4f34c8baaa16"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 5", 500, 4, 1 },
+                    { new Guid("d395b056-9080-4b9f-9405-f9d531ade622"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 3", 500, 1, 15 },
+                    { new Guid("d618b793-65d0-4b28-a48d-0cb76701ae31"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 1", 500, 50, 500 },
+                    { new Guid("e0343d1d-f336-4f29-968e-53d1448c4be3"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 7", 500, 7, 0 },
+                    { new Guid("e3a00c40-03d2-40b7-a566-b7f044481044"), null, null, null, "Desc Test", null, null, new[] { "1.jpg", "2.jpg", "3.jpg" }, "Product 2", 500, 10, 50 }
                 });
 
             migrationBuilder.InsertData(
@@ -96,8 +96,8 @@ namespace API.Data.Migrations
                 columns: new[] { "UserId", "hashedpassword", "pass_salt", "username", "usertype" },
                 values: new object[,]
                 {
-                    { new Guid("a45910a9-c485-4288-81c7-ecbdbf898657"), null, null, "usertest", "user" },
-                    { new Guid("a8e1bf9a-277c-47f8-add4-66849519c8f1"), null, null, "admintest", "admin" }
+                    { new Guid("19787d61-2a8f-41c7-83a0-02ac0f046731"), null, null, "usertest", "user" },
+                    { new Guid("c2b867fb-e6be-4d78-a246-6631118f5a61"), null, null, "admintest", "admin" }
                 });
         }
 

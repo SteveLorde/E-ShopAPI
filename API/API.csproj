@@ -25,6 +25,7 @@
       <Folder Include="obj\Debug\net7.0\ref\" />
       <Folder Include="obj\Debug\net7.0\staticwebassets\" />
       <Folder Include="Storage\" />
+      <Folder Include="Storage\Products\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -7,9 +7,13 @@ public interface IProductsRepository
 {
     public Task<List<Product>> GetProducts();
     public Task<List<Product>> GetMostSelling();
+    public Task<List<Category>> GetCategories();
+    public Task<List<ParentCategory>> GetParentCategories();
     public Task CreateAssetsFolders();
-    public Task<List<Product>> GetProductsByCategory(string category);
+    public Task<List<Product>> GetProductsByCategory(string categoryid);
     public Task AddProduct(ProductDTO producttoadd);
+    public Task AddQuantity(string productid);
+    public Task RemoveQuantity(string productid);
     public Task UpdateProduct(ProductDTO producttoupdate);
     public Task RemoveProduct(ProductDTO producttoremove);
 

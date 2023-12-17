@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231128233757_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            NewsId = new Guid("bf0c7723-462d-4d60-97e8-7530c5c3ea33"),
+                            NewsId = new Guid("97921fe9-4fea-4756-880d-d4df10d514ec"),
                             description = "Desc Test",
                             image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
@@ -59,7 +62,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            NewsId = new Guid("462235eb-997d-4731-856b-b7ca3865a337"),
+                            NewsId = new Guid("da015ff8-b47b-48c0-8353-fd3012c9a1b7"),
                             description = "Desc Test",
                             image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
@@ -67,7 +70,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            NewsId = new Guid("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"),
+                            NewsId = new Guid("1668183c-29a9-4168-b6b5-06556cc8258c"),
                             description = "Desc Test",
                             image = "newscover.jpg",
                             published = new DateOnly(2024, 1, 1),
@@ -122,7 +125,7 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("f4411dd9-d96a-4104-9d33-30f7beb3ad05"),
+                            ProductId = new Guid("d618b793-65d0-4b28-a48d-0cb76701ae31"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 1",
@@ -132,7 +135,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("4679e631-8273-49cd-91a6-fae714ea9d73"),
+                            ProductId = new Guid("e3a00c40-03d2-40b7-a566-b7f044481044"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 2",
@@ -142,7 +145,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("4fe905ac-63ae-4e9c-a10f-b6379b594c18"),
+                            ProductId = new Guid("d395b056-9080-4b9f-9405-f9d531ade622"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 3",
@@ -152,7 +155,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("f741ceca-8eed-40a6-8706-3181886a2e23"),
+                            ProductId = new Guid("0fe9cb6f-f2f5-4843-ae9a-e54d6b8ebdaa"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 4",
@@ -162,7 +165,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("45ee830f-a1f3-44ad-8112-982ef324dab4"),
+                            ProductId = new Guid("9bd81fdd-7322-4312-a208-4f34c8baaa16"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 5",
@@ -172,7 +175,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("710df7a2-9cf9-4b80-89d5-20be76a621af"),
+                            ProductId = new Guid("6f80aeee-13db-4074-aada-d6ba2852b6f8"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 6",
@@ -182,7 +185,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b199f9b1-cf03-4990-876e-492df1cf69d1"),
+                            ProductId = new Guid("e0343d1d-f336-4f29-968e-53d1448c4be3"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 7",
@@ -192,7 +195,7 @@ namespace API.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("4eaf8297-449c-4aea-a656-a92b8730a201"),
+                            ProductId = new Guid("0a264458-6c83-4012-9be7-8e7c7eda0ab8"),
                             description = "Desc Test",
                             images = new[] { "1.jpg", "2.jpg", "3.jpg" },
                             name = "Product 8",
@@ -202,50 +205,17 @@ namespace API.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Data.Models.PurchaseLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("accepted")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("datetime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PurchaseLogs");
-                });
-
             modelBuilder.Entity("API.Data.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("email")
-                        .HasColumnType("text");
-
                     b.Property<string>("hashedpassword")
                         .HasColumnType("text");
 
                     b.Property<string>("pass_salt")
                         .HasColumnType("text");
-
-                    b.Property<int?>("phonenumber")
-                        .HasColumnType("integer");
 
                     b.Property<string>("username")
                         .IsRequired()
@@ -262,35 +232,16 @@ namespace API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("82ad01d9-78dd-4f85-a82e-b261529cb4f4"),
+                            UserId = new Guid("c2b867fb-e6be-4d78-a246-6631118f5a61"),
                             username = "admintest",
                             usertype = "admin"
                         },
                         new
                         {
-                            UserId = new Guid("0a98ba08-74cd-4216-94aa-8f9993e7bb93"),
+                            UserId = new Guid("19787d61-2a8f-41c7-83a0-02ac0f046731"),
                             username = "usertest",
                             usertype = "user"
                         });
-                });
-
-            modelBuilder.Entity("API.Data.Models.PurchaseLog", b =>
-                {
-                    b.HasOne("API.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Data.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

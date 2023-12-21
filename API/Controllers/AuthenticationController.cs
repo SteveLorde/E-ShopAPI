@@ -22,10 +22,16 @@ public class AuthenticationController : Controller
     }
     
     
-    [HttpPut("Login")]
+    [HttpPost("Login")]
     public async Task<bool> Login(UserDTO loginrequest)
     {
         return await _auth.Login(loginrequest);
+    }
+    
+    [HttpPost("LoginTest")]
+    public async Task<string> LoginTest(UserDTO loginrequest)
+    {
+        return await _auth.LoginTest(loginrequest);
     }
     
     [HttpPut("Register")]

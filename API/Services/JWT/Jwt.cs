@@ -22,6 +22,7 @@ class Jwt : IJWT
         List<Claim> claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.username),
+            new Claim("userId", user.Id.ToString())
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtseckey));

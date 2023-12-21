@@ -25,6 +25,12 @@ class ProductsRepository : IProductsRepository
         return await _db.Products.ToListAsync();
     }
 
+    public async Task<Product> GetProduct(string productid)
+    {
+        var productguid = Guid.Parse(productid);
+        return await _db.Products.FirstAsync(product => product.Id == productguid);
+    }
+
     public async Task<List<ParentCategory>> GetParentCategories()
     {
         return await _db.ParentCategories.ToListAsync();
@@ -38,7 +44,7 @@ class ProductsRepository : IProductsRepository
     public async Task<List<Product>> GetProductsByCategory(string categoryid)
     {
         Guid categoryguid = Guid.Parse(categoryid);
-        return await _db.Products.Where(products => products.SubCategoryId == categoryguid).ToListAsync();
+        return await _db.Products.Where(products => products.CategoryId == categoryguid).ToListAsync();
     }
     
     public async Task<List<Product>> GetMostSelling()
@@ -75,7 +81,7 @@ class ProductsRepository : IProductsRepository
 
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, SubCategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
+        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
         await _db.Products.AddAsync(newproduct);
         await _db.SaveChangesAsync();
     }

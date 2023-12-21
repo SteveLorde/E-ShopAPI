@@ -4,6 +4,8 @@ using API.Data;
 using API.Data.DTOs;
 using API.Data.Models;
 using API.Services.Authentication.Model;
+using API.Services.JWT;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services.Authentication;
@@ -11,10 +13,14 @@ namespace API.Services.Authentication;
 class Authentication : IAuthentication
 {
     private readonly DataContext _db;
+    private readonly IMapper _mapper;
+    private readonly IJWT _jwt;
 
-    public Authentication(DataContext db)
+    public Authentication(DataContext db, IMapper mapper, IJWT jwt)
     {
         _db = db;
+        _mapper = mapper;
+        _jwt = jwt;
     }
     
     public async Task<bool> Login(UserDTO usertologin)
@@ -46,6 +52,12 @@ class Authentication : IAuthentication
         {
             throw ex;
         }
+    }
+
+    public async Task<string> LoginTest(UserDTO usertologin)
+    {
+        User user = _mapper.Map<User>(usertologin);
+        return _jwt.CreateToken(user);
     }
 
     public async Task<bool> Register(UserDTO usertoregister)

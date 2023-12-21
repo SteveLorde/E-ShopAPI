@@ -1,4 +1,5 @@
-﻿using API.Data.Models;
+﻿using API.Data.DTOs;
+using API.Data.Models;
 using API.Services.Images;
 using API.Services.ProductsRepository;
 using Microsoft.AspNetCore.Authorization;
@@ -57,6 +58,19 @@ public class WarehouseController : Controller
     {
         var image = await _imageservice.ServeImage(imagename, productid);
         return File(image, "image/jpeg");
+    }
+    
+    [HttpPost("AddProduct")]
+    public async Task AddProduct(ProductDTO newproductrequest)
+    {
+        try
+        {
+            await _warehouse.AddProduct(newproductrequest);
+        }
+        catch (Exception err)
+        {
+            throw err;
+        }
     }
     
 }

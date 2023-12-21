@@ -83,6 +83,10 @@ class ProductsRepository : IProductsRepository
     {
         Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
         await _db.Products.AddAsync(newproduct);
+        foreach (var imagefile in producttoadd.imagefiles)
+        {
+            
+        }
         await _db.SaveChangesAsync();
     }
 

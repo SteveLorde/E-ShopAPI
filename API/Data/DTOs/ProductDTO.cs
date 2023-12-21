@@ -15,4 +15,5 @@ public interface ProductDTO
     public int? price { get; set; }
     public int? discount { get; set; }
     public string[] images { get; set; }
+    public IFormFile[] imagefiles { get; set; }
 }

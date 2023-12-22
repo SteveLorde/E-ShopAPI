@@ -29,10 +29,16 @@ public class WarehouseController : Controller
         return await _warehouse.GetProducts();
     }
     
-    [HttpGet("GetCategories")]
-    public async Task<List<Category>> GetCategories()
+    [HttpGet("GetParentCategories")]
+    public async Task<List<ParentCategory>> GetParentCategories()
     {
-        return await _warehouse.GetCategories();
+        return await _warehouse.GetParentCategories();
+    }
+    
+    [HttpPost("GetCategories")]
+    public async Task<List<Category>> GetCategories(string parentcategoryid)
+    {
+        return await _warehouse.GetCategories(parentcategoryid);
     }
     
     [HttpGet("GetProduct/${productid}")]

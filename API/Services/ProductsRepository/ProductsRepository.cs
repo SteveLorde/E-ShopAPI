@@ -33,12 +33,13 @@ class ProductsRepository : IProductsRepository
 
     public async Task<List<ParentCategory>> GetParentCategories()
     {
-        return await _db.ParentCategories.ToListAsync();
+        return await _db.ParentCategories.Include(parentcat => parentcat.Categories).ToListAsync();
     }
 
-    public async Task<List<Category>> GetCategories()
+    public async Task<List<Category>> GetCategories(string parentcategoryid)
     {
-        return await _db.Categories.ToListAsync();
+        var parentcatguid = Guid.Parse(parentcategoryid);
+        return await _db.ParentCategories.Where(x => x.Id == parentcatguid).SelectMany(z => z.Categories).ToListAsync();
     }
 
     public async Task<List<Product>> GetProductsByCategory(string categoryid)

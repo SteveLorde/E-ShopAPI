@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using API.Data;
 using API.Services.Images;
 using API.Services.NewsRepository;
@@ -13,7 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IProductsRepository,ProductsRepository>();
 builder.Services.AddScoped<I_ImageService,ImageService>();

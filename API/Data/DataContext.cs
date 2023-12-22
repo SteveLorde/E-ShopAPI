@@ -27,10 +27,10 @@ public class DataContext : DbContext
         );
         
         modelBuilder.Entity<Category>().HasData(
-            new Category {Id = Guid.Parse("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"), name = "Computer Hardware", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002") },
-            new Category {Id = Guid.Parse("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"), name = "Mobiles and Accesories", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002") },
-            new Category {Id = Guid.Parse("3ac2239f-3d70-4da0-b81e-bda272847e7c"), name = "Kitchen and Appliances", ParentCategoryId = Guid.Parse("733d2eda-9c0f-11ee-8c90-0242ac120002") },
-            new Category {Id = Guid.Parse("ef39fd90-d4fd-46aa-95bf-23672f549756"), name = "Vegetables", ParentCategoryId = Guid.Parse("6d8e2cc8-9c0f-11ee-8c90-0242ac120002") },
+            new Category {Id = Guid.Parse("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"), name = "Computer Hardware", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002")},
+            new Category {Id = Guid.Parse("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"), name = "Mobiles and Accesories", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002")},
+            new Category {Id = Guid.Parse("3ac2239f-3d70-4da0-b81e-bda272847e7c"), name = "Kitchen and Appliances", ParentCategoryId = Guid.Parse("733d2eda-9c0f-11ee-8c90-0242ac120002")},
+            new Category {Id = Guid.Parse("ef39fd90-d4fd-46aa-95bf-23672f549756"), name = "Vegetables", ParentCategoryId = Guid.Parse("6d8e2cc8-9c0f-11ee-8c90-0242ac120002")},
             new Category {Id = Guid.Parse("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"), name = "Video Games", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002")},
             new Category {Id = Guid.Parse("bb2dc742-a510-4a83-a0fa-e454df3a559c"), name = "Tablets", ParentCategoryId = Guid.Parse("5cd3afb6-9c0f-11ee-8c90-0242ac120002")},
             new Category {Id = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), name = "Face and Hair", ParentCategoryId = Guid.Parse("780fcde6-9c0f-11ee-8c90-0242ac120002")}

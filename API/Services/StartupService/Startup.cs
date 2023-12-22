@@ -1,5 +1,7 @@
-﻿using API.Services.NewsRepository;
+﻿using API.Data;
+using API.Services.NewsRepository;
 using API.Services.ProductsRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Services.StartupService;
 
@@ -14,6 +16,11 @@ public class Startup
 
     public void ExecuteServices()
     {
+        var scopedb = _serviceprovider.CreateScope();
+        var servicedb = scopedb.ServiceProvider;
+        var dbservice = servicedb.GetRequiredService<DataContext>();
+        dbservice.Database.Migrate();
+        Console.WriteLine("Database Found/Created");
         var scope1 = _serviceprovider.CreateScope();
         var servicescoper1 = scope1.ServiceProvider;
         var newsservice = servicescoper1.GetRequiredService<INewsRepository>();

@@ -50,14 +50,7 @@ class ProductsRepository : IProductsRepository
     
     public async Task<List<Product>> GetMostSelling()
     {
-        await MostSelling();
-        return primarymostselling;
-    }
-
-    private async Task MostSelling()
-    {
-        primarymostselling.Clear();
-        primarymostselling = await _db.Products.OrderByDescending(x => x.sells).Take(15).ToListAsync();
+        return await _db.Products.OrderByDescending(x => x.sells).Take(15).ToListAsync();
     }
 
     public async Task CreateAssetsFolders()
@@ -78,15 +71,16 @@ class ProductsRepository : IProductsRepository
             throw err;
         }
     }
-
-
+    
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
+        Product newproduct = new Product { Id = Guid.NewGuid(),name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
         await _db.Products.AddAsync(newproduct);
+        var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "Products", $"{newproduct.Id}", "Images");
+        Directory.CreateDirectory(productfoldertocreate);
         foreach (var imagefile in producttoadd.imagefiles)
         {
-            
+            Directory.CreateDirectory(productfoldertocreate); 
         }
         await _db.SaveChangesAsync();
     }
@@ -105,20 +99,6 @@ class ProductsRepository : IProductsRepository
     {
         Product selectedproduct = await _db.Products.FirstAsync(x => x.Id == producttoupdate.id);
         _mapper.Map(producttoupdate, selectedproduct);
-        
-        /*
-        void functionlol()
-        {
-            selectedproduct.name = producttoupdate.name;
-            selectedproduct.description = producttoupdate.description;
-            selectedproduct.category = producttoupdate.category;
-            selectedproduct.barcode = producttoupdate.barcode;
-            selectedproduct.descriptionbullets = producttoupdate.descriptionbullets;
-            selectedproduct.discount = producttoupdate.discount;
-            selectedproduct.
-        }
-        */
-        
         await _db.SaveChangesAsync();
     }
 

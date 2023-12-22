@@ -44,10 +44,4 @@
       <Content Include="obj\rider.project.restore.info" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Include="obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
-      <Compile Include="obj\Debug\net7.0\API.AssemblyInfo.cs" />
-      <Compile Include="obj\Debug\net7.0\API.GlobalUsings.g.cs" />
-    </ItemGroup>
-
 </Project>

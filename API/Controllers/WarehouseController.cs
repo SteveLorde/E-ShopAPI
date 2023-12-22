@@ -42,10 +42,10 @@ public class WarehouseController : Controller
         return await _warehouse.GetProduct(productid);
     }
     
-    [HttpGet("GetCategorizedProducts/{category}")]
-    public async Task<List<Product>> GetCategorizedProducts(string category)
+    [HttpGet("GetCategoryProducts/{categoryid}")]
+    public async Task<List<Product>> GetCategoryProducts(string categoryid)
     {
-        return await _warehouse.GetProductsByCategory(category);
+        return await _warehouse.GetProductsByCategory(categoryid);
     }
 
     [HttpGet("MostSelling")]

@@ -39,13 +39,13 @@ class ProductsRepository : IProductsRepository
     public async Task<List<Category>> GetCategories(string parentcategoryid)
     {
         var parentcatguid = Guid.Parse(parentcategoryid);
-        return await _db.ParentCategories.Where(x => x.Id == parentcatguid).SelectMany(z => z.Categories).ToListAsync();
+        return await _db.ParentCategories.Where(x => x.Id == parentcatguid).SelectMany(z => z.Categories).Include(a => a.ParentCategory).ToListAsync();
     }
 
     public async Task<List<Product>> GetProductsByCategory(string categoryid)
     {
         Guid categoryguid = Guid.Parse(categoryid);
-        return await _db.Products.Where(products => products.CategoryId == categoryguid).ToListAsync();
+        return await _db.Products.Where(x => x.Category.ParentCategoryId == categoryguid || x.CategoryId == categoryguid ).ToListAsync();
     }
     
     public async Task<List<Product>> GetMostSelling()

@@ -11,6 +11,7 @@ public class Product
     public string? descriptionbullets { get; set; }
     
     public Guid? CategoryId { get; set; }
+    public Category Category { get; set; }
     public int? price { get; set; }
     public int? barcode { get; set; }
     public int storequantity { get; set; }

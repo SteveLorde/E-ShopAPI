@@ -8,13 +8,15 @@ namespace API.Services.JWT;
 
 class Jwt : IJWT
 {
-    private const string jwtseckey = "V4XnjsgnRQuUecN27lwoCB82i4AbDMoX1GIFLbtolN4P8P18IRXFVLojx4vwLi7";
+    private string jwtseckey;
 
     private IConfiguration _config;
 
     public Jwt(IConfiguration config)
     {
         _config = config;
+        jwtseckey = _config["secretkey"];
+        Console.WriteLine("Secret Key is:" + _config["secretkey"]);
     }
 
     public string CreateToken(User user)

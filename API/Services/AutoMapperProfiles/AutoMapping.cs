@@ -12,7 +12,7 @@ public class AutoMapping : Profile
         CreateMap<UserDTO, User>();
         CreateMap<ProductDTO, Product>();
         CreateMap<PurchaseLogDTO, PurchaseLog>();
-        CreateMap<AuthRequestDTO, UserDTO>();
         CreateMap<MailDTO, Mail.Model.Mail>();
     }
+    
 }

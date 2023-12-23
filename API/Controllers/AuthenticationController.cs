@@ -34,19 +34,13 @@ public class AuthenticationController : Controller
         return await _auth.LoginTest(loginrequest);
     }
     
-    [HttpPut("Register")]
+    [HttpPost("Register")]
     public async Task<bool> Register(UserDTO registerrequest)
     {
         return await _auth.Register(registerrequest);
     }
-    
-    [HttpPut("GetUserInfo")]
-    public async Task<User> GetUserInfo(AuthRequestDTO inforequest)
-    {
-        return await _auth.GetUserInfo(inforequest);
-    }
 
-    [HttpPut("CheckToken")]
+    [HttpPost("CheckToken")]
     public async Task<bool> CheckToken(string token)
     {
         var check = _jwt.VerifyToken(token);

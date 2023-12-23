@@ -1,7 +1,9 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using API.Data;
+using API.Services.Authentication;
 using API.Services.Images;
+using API.Services.JWT;
 using API.Services.NewsRepository;
 using API.Services.ProductsRepository;
 using API.Services.StartupService;
@@ -19,6 +21,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddScoped<IAuthentication,Authentication>();
+builder.Services.AddScoped<IJWT,Jwt>();
 builder.Services.AddScoped<IProductsRepository,ProductsRepository>();
 builder.Services.AddScoped<I_ImageService,ImageService>();
 builder.Services.AddScoped<INewsRepository,NewsRepository>();
@@ -59,7 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors( x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyMethod());
+app.UseCors( x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowAnyMethod());
 app.UseHttpsRedirection();
 
 app.UseStaticFiles(new StaticFileOptions

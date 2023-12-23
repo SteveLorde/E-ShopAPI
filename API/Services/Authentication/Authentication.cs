@@ -56,8 +56,8 @@ class Authentication : IAuthentication
 
     public async Task<string> LoginTest(UserDTO usertologin)
     {
-        User user = _mapper.Map<User>(usertologin);
-        return _jwt.CreateToken(user);
+        var testuser = await _db.Users.FirstAsync(user => user.username == "testuser");
+        return _jwt.CreateToken(testuser);
     }
 
     public async Task<bool> Register(UserDTO usertoregister)
@@ -84,10 +84,9 @@ class Authentication : IAuthentication
         }
     }
 
-    public async Task<User> GetUserInfo(AuthRequestDTO request)
+    public async Task<string> GetUserInfo()
     {
-        User user = await _db.Users.FirstAsync(x => x.Id == request.user.Id);
-        return user;
+        return "lol";
     }
     
     

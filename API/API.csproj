@@ -44,4 +44,10 @@
       <Content Include="obj\rider.project.restore.info" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Update="Storage\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
 </Project>

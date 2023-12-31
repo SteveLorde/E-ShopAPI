@@ -23,31 +23,13 @@
 
     <ItemGroup>
       <Folder Include="Data\Migrations\" />
-      <Folder Include="obj\Debug\net7.0\refint\" />
-      <Folder Include="obj\Debug\net7.0\ref\" />
-      <Folder Include="obj\Debug\net7.0\staticwebassets\" />
       <Folder Include="Storage\" />
-      <Folder Include="Storage\Products\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="obj\API.csproj.nuget.dgspec.json" />
-      <Content Include="obj\API.csproj.nuget.g.props" />
-      <Content Include="obj\API.csproj.nuget.g.targets" />
-      <Content Include="obj\Debug\net7.0\API.AssemblyInfoInputs.cache" />
-      <Content Include="obj\Debug\net7.0\API.assets.cache" />
-      <Content Include="obj\Debug\net7.0\API.csproj.AssemblyReference.cache" />
-      <Content Include="obj\Debug\net7.0\API.GeneratedMSBuildEditorConfig.editorconfig" />
-      <Content Include="obj\project.assets.json" />
-      <Content Include="obj\project.nuget.cache" />
-      <Content Include="obj\project.packagespec.json" />
-      <Content Include="obj\rider.project.restore.info" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Update="Storage\**\*">
+        <None Update="Storage\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
+        </None>
     </ItemGroup>
 
 </Project>
